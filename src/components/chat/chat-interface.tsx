@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { SendHorizontal, PaperclipIcon, MicIcon, Trash2 } from 'lucide-react';
+import { SendHorizontal, PaperclipIcon, Trash2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Message } from '@/types/message';
 import { cn } from '@/lib/utils';
@@ -20,7 +20,7 @@ export default function ChatInterface({
   onFileUpload,
 }: ChatInterfaceProps) {
   const [input, setInput] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
+  const [isTyping] = useState(false);
   const { toast } = useToast();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);

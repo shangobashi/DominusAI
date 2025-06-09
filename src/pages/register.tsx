@@ -4,7 +4,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Scale, Mail, Lock, User, Github, UserPlus } from 'lucide-react';
+import { Scale, Mail, Lock, User, UserPlus } from 'lucide-react';
 
 export default function RegisterPage() {
   const { register, googleLogin, microsoftLogin } = useAuth();
@@ -28,10 +28,10 @@ export default function RegisterPage() {
         variant: "success",
       });
       navigate('/dashboard');
-    } catch (error: any) {
+    } catch (error: unknown) {
       toast({
         title: "Registration failed",
-        description: error.message || "Please check your information and try again",
+        description: (error as Error).message || "Please check your information and try again",
         variant: "destructive",
       });
     } finally {

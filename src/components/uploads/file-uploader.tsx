@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
@@ -23,7 +22,6 @@ export function FileUploader({
   maxSizeInBytes = 5 * 1024 * 1024, // 5MB default
 }: FileUploaderProps) {
   const { toast } = useToast();
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (acceptedFiles) => {

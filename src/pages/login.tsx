@@ -4,7 +4,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Scale, Mail, Lock, Github, LogIn } from 'lucide-react';
+import { Scale, Mail, Lock, LogIn } from 'lucide-react';
 
 export default function LoginPage() {
   const { login, googleLogin, microsoftLogin } = useAuth();
@@ -27,10 +27,10 @@ export default function LoginPage() {
         variant: "success",
       });
       navigate('/dashboard');
-    } catch (error: any) {
+    } catch (error: unknown) {
       toast({
         title: "Login failed",
-        description: error.message || "Please check your credentials and try again",
+        description: (error as Error).message || "Please check your credentials and try again",
         variant: "destructive",
       });
     } finally {
@@ -47,10 +47,10 @@ export default function LoginPage() {
         variant: "success",
       });
       navigate('/dashboard');
-    } catch (error: any) {
+    } catch (error: unknown) {
       toast({
         title: "Google login failed",
-        description: error.message || "Please try again later",
+        description: (error as Error).message || "Please try again later",
         variant: "destructive",
       });
     }
@@ -65,10 +65,10 @@ export default function LoginPage() {
         variant: "success",
       });
       navigate('/dashboard');
-    } catch (error: any) {
+    } catch (error: unknown) {
       toast({
         title: "Microsoft login failed",
-        description: error.message || "Please try again later",
+        description: (error as Error).message || "Please try again later",
         variant: "destructive",
       });
     }

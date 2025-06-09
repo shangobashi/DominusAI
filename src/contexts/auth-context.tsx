@@ -47,10 +47,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   // Mock authentication functions
   const login = async (email: string, password: string) => {
     setLoading(true);
-    
+
     try {
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 1000));
+
+      if (!email || !password) {
+        throw new Error('Invalid login credentials');
+      }
       
       // Mock successful login
       const mockUser: User = {
@@ -62,7 +66,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       
       setUser(mockUser);
       localStorage.setItem('auth_user', JSON.stringify(mockUser));
-    } catch (error) {
+    } catch {
       throw new Error('Invalid login credentials');
     } finally {
       setLoading(false);
@@ -86,7 +90,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       
       setUser(mockUser);
       localStorage.setItem('auth_user', JSON.stringify(mockUser));
-    } catch (error) {
+    } catch {
       throw new Error('Registration failed');
     } finally {
       setLoading(false);
@@ -103,8 +107,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       // Clear user state and local storage
       setUser(null);
       localStorage.removeItem('auth_user');
-    } catch (error) {
-      console.error('Logout failed', error);
+    } catch {
+      console.error('Logout failed');
     } finally {
       setLoading(false);
     }
@@ -127,7 +131,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       
       setUser(mockUser);
       localStorage.setItem('auth_user', JSON.stringify(mockUser));
-    } catch (error) {
+    } catch {
       throw new Error('Google login failed');
     } finally {
       setLoading(false);
@@ -151,7 +155,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       
       setUser(mockUser);
       localStorage.setItem('auth_user', JSON.stringify(mockUser));
-    } catch (error) {
+    } catch {
       throw new Error('Microsoft login failed');
     } finally {
       setLoading(false);
@@ -176,7 +180,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUser(updatedUser);
         localStorage.setItem('auth_user', JSON.stringify(updatedUser));
       }
-    } catch (error) {
+    } catch {
       throw new Error('Profile update failed');
     } finally {
       setLoading(false);

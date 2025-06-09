@@ -5,11 +5,10 @@ import { Menu, Bell, Search } from 'lucide-react';
 
 interface HeaderProps {
   toggleSidebar: () => void;
-  isCollapsed: boolean;
 }
 
-export default function Header({ toggleSidebar, isCollapsed }: HeaderProps) {
-  const { user, logout } = useAuth();
+export default function Header({ toggleSidebar }: HeaderProps) {
+  const { user } = useAuth();
   
   return (
     <header className="h-16 border-b border-border flex items-center px-4 bg-card">

@@ -27,10 +27,10 @@ export default function AccountPage() {
         description: 'Your profile information has been updated',
         variant: 'success',
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       toast({
         title: 'Update failed',
-        description: error.message || 'Failed to update profile',
+        description: (error as Error).message || 'Failed to update profile',
         variant: 'destructive',
       });
     }
@@ -62,10 +62,10 @@ export default function AccountPage() {
         description: 'Your password has been changed successfully',
         variant: 'success',
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       toast({
         title: 'Password change failed',
-        description: error.message || 'Failed to update password',
+        description: (error as Error).message || 'Failed to update password',
         variant: 'destructive',
       });
     }
