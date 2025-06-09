@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { CreditCard, CheckCircle, Calendar, Loader2, Download } from 'lucide-react';
+import { CreditCard, CheckCircle, Calendar, Download } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils';
 
 // Mock invoice type
@@ -27,7 +27,6 @@ interface SubscriptionPlan {
 export default function BillingPage() {
   const [invoices, setInvoices] = useState<Invoice[]>([]);
   const [plans, setPlans] = useState<SubscriptionPlan[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     // Simulate data fetching
@@ -112,7 +111,7 @@ export default function BillingPage() {
       } catch (error) {
         console.error('Error fetching billing data', error);
       } finally {
-        setIsLoading(false);
+        // data loaded
       }
     };
     

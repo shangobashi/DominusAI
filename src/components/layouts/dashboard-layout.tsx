@@ -1,5 +1,5 @@
-import { useState, ReactNode } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useState } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks/use-auth';
 import Sidebar from '@/components/navigation/sidebar';
 import Header from '@/components/navigation/header';
@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function DashboardLayout() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const { user } = useAuth();
+  const location = useLocation();
   
   if (!user) return null;
   

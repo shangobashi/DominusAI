@@ -7,8 +7,6 @@ import PromptEditor from '@/components/cases/prompt-editor';
 import { useToast } from '@/hooks/use-toast';
 import { DEFAULT_SYSTEM_PROMPT } from '@/lib/mock-data';
 import { v4 as uuidv4 } from 'uuid';
-import { generateCaseId } from '@/lib/utils';
-import { Document } from '@/types/document';
 
 export default function NewCasePage() {
   const navigate = useNavigate();
@@ -28,7 +26,6 @@ export default function NewCasePage() {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      const caseId = generateCaseId();
       const newCaseId = uuidv4();
       
       // In a real app, this would be a real API call to create the case
@@ -39,7 +36,7 @@ export default function NewCasePage() {
       });
       
       navigate(`/cases/${newCaseId}`);
-    } catch (error) {
+    } catch {
       toast({
         title: 'Failed to create case',
         description: 'Please try again later',
